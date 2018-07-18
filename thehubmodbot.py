@@ -14,7 +14,7 @@ bot = commands.Bot(command_prefix='h!')
 bot.remove_command('help')
 async def loop():
     while True:
-        await bot.change_presence(game=discord.Game(name=">help", type=2))
+        await bot.change_presence(game=discord.Game(name="h!help", type=2))
         await asyncio.sleep(15)
         await bot.change_presence(game=discord.Game(name="some dope people", type=2))
         await asyncio.sleep(15)
@@ -28,7 +28,6 @@ async def on_ready():
     await bot.change_presence(game=discord.Game(name="mmgamerbot.com", url="https://twitch.tv/MMgamerBOT", type=1))
     await loop()
 
-@bot.event
 async def webupdate():
    interfacewebhook = "http://hub-interface.herokuapp.com/webhook"
    headers = {
