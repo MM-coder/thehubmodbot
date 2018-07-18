@@ -194,7 +194,7 @@ async def warn(ctx, userName: discord.Member ,*, reason: str):
         embed = discord.Embed(title="Warned", description="{} You have been warned for **{}**".format(userName.mention, reason), color=0x2C2C2C)
         embed.set_thumbnail(url=userName.avatar_url)
         embed.set_author(name=ctx.message.author.name, icon_url=ctx.message.author.avatar_url)
-        await bot.send_message(bot.get_channel("461818016909492224"), embed=embed)
+        await bot.send_message(bot.get_channel("468043561875800095"), embed=embed)
         await bot.say(embed=embed)
         await bot.send_message(userName, "You Have Been Warned. Reason: {}".format(reason))
     else:
