@@ -263,5 +263,5 @@ async def on_message(message):
 
 
 
-bot.loop.create_task(webupdate())
+
 bot.run(os.getenv('TOKEN'))
