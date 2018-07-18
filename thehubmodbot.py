@@ -23,8 +23,6 @@ async def loop():
  
 @bot.event
 async def on_ready():
-    global server
-    server = bot.get_server("468031201886863372")
     print ("Bot has Booted!")
     print ("I am running on " + bot.user.name)
     print ("With the ID: " + bot.user.id)
@@ -32,7 +30,7 @@ async def on_ready():
     await loop()
  
 async def webupdate():
-   global server
+   await bot.wait_until_ready()
    interfacewebhook = "http://hub-interface.herokuapp.com/webhook"
    while 1:
       headers = {
@@ -40,7 +38,7 @@ async def webupdate():
       }
       data = {
          "time": datetime.datetime.now(),
-         "servermembers": server.member_count
+         "servermembers": bot.get_server("468031201886863372").member_count
       }
       response = requests.post(interfacewebhook, data=json.dumps(status), headers=header)
       await asyncio.sleep(60)
