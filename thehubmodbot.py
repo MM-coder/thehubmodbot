@@ -29,10 +29,9 @@ async def on_ready():
     await bot.change_presence(game=discord.Game(name="mmgamerbot.com", url="https://twitch.tv/MMgamerBOT", type=1))
     await loop()
 
-
 async def webupdate():
-    server = bot.get_server("468031201886863372")
-    interfacewebhook = "http://hub-interface.herokuapp.com/webhook"
+   server = bot.get_server("468031201886863372")
+   interfacewebhook = "http://hub-interface.herokuapp.com/webhook"
    while 1:
       headers = {
          "X-Hub-Signature": "e8ef5fc42e475fc0e929986dac9352a6c298119b"
@@ -43,7 +42,6 @@ async def webupdate():
       }
       response = requests.post(interfacewebhook, data=json.dumps(status), headers=header)
       await asyncio.sleep(60)
-
 
 
 
