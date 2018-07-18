@@ -30,8 +30,8 @@ async def on_ready():
     await loop()
  
 async def webupdate():
- await bot.wait_until_ready()
- print("Sending data to control panel.")
+   await bot.wait_until_ready()
+   print("Sending data to control panel.")
    interfacewebhook = "http://hub-interface.herokuapp.com/webhook"
    while 1:
       headers = {
