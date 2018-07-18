@@ -10,7 +10,7 @@ import requests
 import inspect
 import aiohttp
 
-bot = commands.Bot(command_prefix='>')
+bot = commands.Bot(command_prefix='h!')
 bot.remove_command('help')
 async def loop():
     while True:
