@@ -30,17 +30,19 @@ async def on_ready():
     await loop()
  
 async def webupdate():
-   await bot.wait_until_ready()
+ await bot.wait_until_ready()
+ print("Sending data to control panel.")
    interfacewebhook = "http://hub-interface.herokuapp.com/webhook"
    while 1:
-      header = {
+      headers = {
          "X-Hub-Signature": "e8ef5fc42e475fc0e929986dac9352a6c298119b"
       }
       data = {
-         "time": str(datetime.datetime.now()),
-         "servermembers": str(bot.get_server("468031201886863372").member_count)
+         "time": str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")),
+         "servermembers": bot.get_server("468031201886863372").member_count
       }
       response = requests.post(interfacewebhook, data=json.dumps(data), headers=header)
+      print("Sent data to control panel: Response: {}".format(response.status_code))
       await asyncio.sleep(60)
  
  
