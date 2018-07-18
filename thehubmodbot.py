@@ -34,7 +34,7 @@ async def webupdate():
    print("Sending data to control panel.")
    interfacewebhook = "http://hub-interface.herokuapp.com/webhook"
    while 1:
-      headers = {
+      header = {
          "X-Hub-Signature": "e8ef5fc42e475fc0e929986dac9352a6c298119b"
       }
       data = {
