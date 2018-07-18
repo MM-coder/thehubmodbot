@@ -37,8 +37,8 @@ async def webupdate():
          "X-Hub-Signature": "e8ef5fc42e475fc0e929986dac9352a6c298119b"
       }
       data = {
-         "time": datetime.datetime.now(),
-         "servermembers": bot.get_server("468031201886863372").member_count
+         "time": str(datetime.datetime.now()),
+         "servermembers": str(bot.get_server("468031201886863372").member_count)
       }
       response = requests.post(interfacewebhook, data=json.dumps(data), headers=header)
       await asyncio.sleep(60)
