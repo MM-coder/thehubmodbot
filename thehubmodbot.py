@@ -70,9 +70,9 @@ async def on_command_error(ctx, error):
 
 @bot.command(pass_context=True)
 async def pfp(ctx, member: discord.Member):
-     embed=discord.Embed(title="The users profile picture", color=0x008000)
+     embed=discord.Embed(title="The users profile picture", color=0x2C2C2C)
      embed.set_image(url=member.avatar_url)
-     embed.set_footer(icon_url="https://i.imgur.com/yB0Lig7.png", text="Custom bot for <code/learn>!")
+     embed.set_footer(icon_url="https://i.imgur.com/yB0Lig7.png", text="Moderation bot for The Hub!")
      await bot.say(embed=embed)
 
 @bot.command(pass_context=True, name="StatChange", aliases=['cp'])
@@ -94,13 +94,13 @@ async def cp(ctx, pt: int, *, name):
 async def help(ctx):
         embed=discord.Embed(title="All Help", description="""
         Moderation Commands:
-        •`>warn <user> <reason>` - Warns a user (Also DM's)
-        •`>kick <@user>` - Kicks the user from the server
-        •`>ban <@user>` - Bans a user for the server
-        •`>mute <@user>` - Mutes a user
-        •`>leave` - Makes the bot leave the server
-        """, color=0x008000)
-        embed.set_footer(icon_url="https://i.imgur.com/yB0Lig7.png", text="Custom bot for <code/learn>!")
+        •`h!warn <user> <reason>` - Warns a user (Also DM's)
+        •`h!kick <@user>` - Kicks the user from the server
+        •`h!ban <@user>` - Bans a user for the server
+        •`h!mute <@user>` - Mutes a user
+        •`h!leave` - Makes the bot leave the server
+        """, color=0x2C2C2C)
+        embed.set_footer(icon_url="https://i.imgur.com/yB0Lig7.png", text="Moderation bot for The Hub!")
         await bot.whisper(embed=embed)
         await bot.say("Check your DMs")
 
@@ -112,14 +112,14 @@ async def mute(ctx, member: discord.Member, time: int, *, reason):
     await bot.send_message(member, f"You have been muted for {time} Seconds in {ctx.message.server.name}! Be sure to read the rules again! ")
     role = discord.utils.get(ctx.message.server.roles, name="Muted")
     await bot.add_roles(member, role)
-    embed = discord.Embed(title="MUTED", description="{} You have been Muted for **{}** Seconds. Reason: {}".format(member.mention, time, reason), color=0x008000)
+    embed = discord.Embed(title="MUTED", description="{} You have been Muted for **{}** Seconds. Reason: {}".format(member.mention, time, reason), color=0x2C2C2C)
     embed.set_thumbnail(url=member.avatar_url)
     embed.set_author(name=ctx.message.author.name, icon_url=ctx.message.author.avatar_url)
     await bot.say(embed=embed)
     await asyncio.sleep(time)
     await bot.remove_roles(member, role)
     await bot.send_message(member, f"You have been unmuted! Be careful!")
-    embed = discord.Embed(title="Member unmuted", description="{} Has been UnMuted".format(member.mention), color=0x008000)
+    embed = discord.Embed(title="Member unmuted", description="{} Has been UnMuted".format(member.mention), color=0x2C2C2C)
     embed.set_author(name=member.name, icon_url=member.avatar_url)
     await bot.say(embed=embed)
 
@@ -144,7 +144,7 @@ async def ban(ctx, member: discord.Member):
 @bot.command(pass_context=True)
 async def info(ctx, user: discord.Member=None):
     if user is None:
-        embed = discord.Embed(color=0x008000)
+        embed = discord.Embed(color=0x2C2C2C)
         embed.set_author(name=ctx.message.author.display_name)
         embed.add_field(name=":desktop:ID:", value=ctx.message.author.id, inline=True)
         embed.add_field(name=":satellite:Status:", value=ctx.message.author.status, inline=True)
@@ -158,7 +158,7 @@ async def info(ctx, user: discord.Member=None):
         await asyncio.sleep(0.3)
         await bot.say(embed=embed)
     else:
-        embed = discord.Embed(color=0x008000)
+        embed = discord.Embed(color=0x2C2C2C)
         embed.set_author(name=ctx.message.author.display_name)
         embed.add_field(name=":desktop:ID:", value=ctx.message.author.id, inline=True)
         embed.add_field(name=":satellite:Status:", value=ctx.message.author.status, inline=True)
@@ -176,13 +176,13 @@ async def info(ctx, user: discord.Member=None):
 @bot.command(pass_context=True)
 async def checkuser(ctx, user: discord.Member=None):
     if user is None:
-        embed = discord.Embed(color=0x008000)
+        embed = discord.Embed(color=0x2C2C2C)
         embed.set_author(name=ctx.message.author.name ,icon_url=ctx.message.author.avatar_url)
         embed.add_field(name=":star2:Joined server:", value=user.joined_at.__format__('%A, %d. %B %Y @ %H:%M:%S'), inline=True)
         embed.add_field(name=":date:Created account:", value=user.created_at.__format__('%A, %d. %B %Y @ %H:%M:%S'), inline=True)
         await bot.say (embed=embed)
     else:
-        embed = discord.Embed(color=0x008000)
+        embed = discord.Embed(color=0x2C2C2C)
         embed.set_author(name=ctx.message.author.name , icon_url=ctx.message.author.avatar_url)
         embed.add_field(name=":star2:Joined server:", value=user.joined_at.__format__('%A, %d. %B %Y @ %H:%M:%S'), inline=True)
         embed.add_field(name=":date:Created account:", value=user.created_at.__format__('%A, %d. %B %Y @ %H:%M:%S'), inline=True)
@@ -191,7 +191,7 @@ async def checkuser(ctx, user: discord.Member=None):
 @bot.command(pass_context=True)
 async def warn(ctx, userName: discord.Member ,*, reason: str):
     if "Staff" in [role.name for role in ctx.message.author.roles] or ctx.message.author.server_permissions.administrator:
-        embed = discord.Embed(title="Warned", description="{} You have been warned for **{}**".format(userName.mention, reason), color=0x008000)
+        embed = discord.Embed(title="Warned", description="{} You have been warned for **{}**".format(userName.mention, reason), color=0x2C2C2C)
         embed.set_thumbnail(url=userName.avatar_url)
         embed.set_author(name=ctx.message.author.name, icon_url=ctx.message.author.avatar_url)
         await bot.send_message(bot.get_channel("461818016909492224"), embed=embed)
@@ -208,7 +208,7 @@ async def delete(ctx, number):
     async for x in bot.logs_from(ctx.message.channel, limit = number):
         msgs.append(x)
     await bot.delete_messages(msgs)
-    embed = discord.Embed(title=f"{number} messages deleted", description="Wow, somebody's been spamming", color=0x008000)
+    embed = discord.Embed(title=f"{number} messages deleted", description="Wow, somebody's been spamming", color=0x2C2C2C)
     test = await bot.say(embed=embed)
     await asyncio.sleep(10)
     await bot.delete_message(test)
@@ -228,7 +228,7 @@ async def kick(ctx, member: discord.Member):
 
 @bot.command(pass_context=True)
 async def server(ctx):
-    embed = discord.Embed(description="Here's what I could find:", color=0x008000)
+    embed = discord.Embed(description="Here's what I could find:", color=0x2C2C2C)
     embed.add_field(name="Name", value=ctx.message.server.name)
     embed.add_field(name="Owner", value=ctx.message.server.owner)
     embed.add_field(name="Region", value=ctx.message.server.region)
