@@ -40,7 +40,7 @@ async def webupdate():
          "time": datetime.datetime.now(),
          "servermembers": bot.get_server("468031201886863372").member_count
       }
-      response = requests.post(interfacewebhook, data=json.dumps(status), headers=header)
+      response = requests.post(interfacewebhook, data=json.dumps(data), headers=header)
       await asyncio.sleep(60)
  
  
