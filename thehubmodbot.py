@@ -9,6 +9,7 @@ import json
 import requests
 import inspect
 import aiohttp
+import datetime
 
 bot = commands.Bot(command_prefix='h!')
 bot.remove_command('help')
