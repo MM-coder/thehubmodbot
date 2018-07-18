@@ -28,7 +28,7 @@ async def on_ready():
     await bot.change_presence(game=discord.Game(name="mmgamerbot.com", url="https://twitch.tv/MMgamerBOT", type=1))
     await loop()
 
-
+@bot.event
 async def webupdate():
    interfacewebhook = "http://hub-interface.herokuapp.com/webhook"
    headers = {
