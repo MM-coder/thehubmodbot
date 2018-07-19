@@ -39,9 +39,9 @@ async def webupdate():
         }
         data = {
             "time": str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")),
-            "name": srv.name,
-            "owner": srv.owner,
-            "region": srv.region,
+            "name": str(srv.name),
+            "owner": str(srv.owner),
+            "region": str(srv.region),
             "roles": len(srv.roles),
             "members": srv.member_count,
             "channels": len(srv.channels)
