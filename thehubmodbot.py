@@ -215,7 +215,7 @@ async def report(ctx, userName: discord.Member ,*, reason: str):
         embed.set_thumbnail(url=userName.avatar_url)
         embed.set_author(name=ctx.message.author.name, icon_url=ctx.message.author.avatar_url)
         await bot.send_message(bot.get_channel("469907971426615296"), embed=embed)
-        await bot.send_message(authorName, "You have submitted a report about: {}".format(reason))
+        await bot.whisper("You have submitted a report about: {}".format(reason))
     else:
         await bot.say("{} :x: You are not allowed to use this command!".format(ctx.message.author.mention))
 
