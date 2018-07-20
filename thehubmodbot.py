@@ -214,7 +214,7 @@ async def report(ctx, userName: discord.Member ,*, reason: str):
         embed = discord.Embed(title="Reported", description="{} Has been reported for **{}**".format(userName.mention, reason), color=0x2C2C2C)
         embed.set_thumbnail(url=userName.avatar_url)
         embed.set_author(name=ctx.message.author.name, icon_url=ctx.message.author.avatar_url)
-        await bot.send_message(bot.get_channel("468043561875800095"), embed=embed)
+        await bot.send_message(bot.get_channel("469907971426615296"), embed=embed)
         await bot.send_message(authorName, "You have submitted a report about: {}".format(reason))
     else:
         await bot.say("{} :x: You are not allowed to use this command!".format(ctx.message.author.mention))
@@ -279,12 +279,6 @@ async def remove_all_servers(ctx):
             await bot.leave_server(server)
         await bot.say("Operation completed")
 
-@bot.command(pass_context=True)
-async def say(ctx, *, message):
-    if ctx.message.author.id == bot.user.id:
-        return
-    else:
-        await bot.say(message)
 
 @bot.command(pass_context=True)
 async def reboot(ctx):
