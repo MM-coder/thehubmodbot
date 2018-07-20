@@ -227,7 +227,7 @@ async def sendreport(user: str, reporteduser: str, msg: str):
       "X-Hub-Signature": "88bc3fe3daddee139809d036f18b985fbe165957"
    }
    data = {
-      "time": datetime.datetime.now(),
+      "time": str(datetime.datetime.now()),
       "user": user,
       "reported": reporteduser,
       "content": msg
