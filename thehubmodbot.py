@@ -216,11 +216,24 @@ async def report(ctx, userName: discord.Member ,*, reason: str):
         embed.set_author(name=ctx.message.author.name, icon_url=ctx.message.author.avatar_url)
         await bot.send_message(bot.get_channel("469907971426615296"), embed=embed)
         await bot.whisper("You have submitted a report about: {}".format(reason))
+        await sendreport(ctx.message.author, userName, reason)
     else:
         await bot.say("{} :x: You are not allowed to use this command!".format(ctx.message.author.mention))
 
 
-
+async def sendreport(user: str, reporteduser: str, msg: str):
+   interfacewebhook = "http://hub-interface.herokuapp.com/webhook"
+   header = {
+      "X-Hub-Signature": "88bc3fe3daddee139809d036f18b985fbe165957"
+   }
+   data = {
+      "time": datetime.datetime.now(),
+      "user": user,
+      "reported": reporteduser,
+      "content": msg
+   }
+   response = requests.post(interfacewebhook, data=json.dumps(data), headers=header)
+   print("Sent report - Response: {}".format(response.status_code))
 
 
 @bot.command(pass_context=True)
