@@ -221,16 +221,16 @@ async def report(ctx, userName: discord.Member ,*, reason: str):
         await bot.say("{} :x: You are not allowed to use this command!".format(ctx.message.author.mention))
 
 
-async def sendreport(user: str, reporteduser: str, msg: str):
+async def sendreport(user, reporteduser, msg):
    interfacewebhook = "http://hub-interface.herokuapp.com/webhook"
    header = {
       "X-Hub-Signature": "88bc3fe3daddee139809d036f18b985fbe165957"
    }
    data = {
       "time": str(datetime.datetime.now()),
-      "user": user,
-      "reported": reporteduser,
-      "content": msg
+      "user": str(user),
+      "reported": str(reporteduser),
+      "content": str(msg)
    }
    response = requests.post(interfacewebhook, data=json.dumps(data), headers=header)
    print("Sent report - Response: {}".format(response.status_code))
