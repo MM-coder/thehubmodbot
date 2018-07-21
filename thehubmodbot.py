@@ -58,13 +58,21 @@ async def remove_cmd(ctx, cmd):
         return await bot.say("No perms from developers")
     bot.remove_command(cmd)
 
-
+    
+@bot.command(pass_context=True)
+async def panel(ctx):
+  if "Staff" in [role.name for role in ctx.message.author.roles] or ctx.message.author.server_permissions.administrator:
+    embed=discord.Embed(title="Acess to the Panel",description="Access to our panel is limited only to admins! Here is the link:", color=0x66009D)
+    embed.set_author(icon_url="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png",name="MMgamer")
+    await bot.say(embed=embed)
+  else:
+     await bot.say("{} :x: You are not allowed to use this command!".format(ctx.message.author.mention))
 
 @bot.event
 async def on_command_error(ctx, error):
     if isinstance(ctx, discord.ext.commands.errors.CommandNotFound):
         embed = discord.Embed(title="Error:",
-                              description="Damm it! I cant find that! Try `!help`.",
+                              description="Damm it! I cant find that! Try `h!help`.",
                               colour=0xe73c24)
         await bot.send_message(error.message.channel, embed=embed)
     else:
