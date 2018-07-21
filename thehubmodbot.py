@@ -62,9 +62,10 @@ async def remove_cmd(ctx, cmd):
 @bot.command(pass_context=True)
 async def panel(ctx):
   if "Staff" in [role.name for role in ctx.message.author.roles] or ctx.message.author.server_permissions.administrator:
-    embed=discord.Embed(title="Acess to the Panel",description="Access to our panel is limited only to admins! Here is the link:", color=0x66009D)
-    embed.set_author(icon_url="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png",name="MMgamer")
-    await bot.say(embed=embed)
+    embed=discord.Embed(title="Acess to the Panel",description="Access to our panel is limited only to admins! Here is the link: http://hub-interface.herokuapp.com/", color=0x2C2C2C)
+    embed.set_author(icon_url="https://cdn.discordapp.com/attachments/468432096289882123/469218067646251049/IMG_20180717_161122_614.jpg",name="MMgamer")
+    await bot.whisper(embed=embed)
+    await bot.say(":x: The command was DM'd to you for security reasons")
   else:
      await bot.say("{} :x: You are not allowed to use this command!".format(ctx.message.author.mention))
 
