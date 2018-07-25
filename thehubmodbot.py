@@ -149,7 +149,8 @@ async def promote(ctx, member: discord.Member):
     if ctx.message.author.id == '279714095480176642':
         role = discord.utils.get(ctx.message.server.roles, name="Manager")
         await bot.add_roles(member, role)
-        embed = discord.Embed(title="Promoted!", description="{} You have been promoted by: @MMgamer#3477! Following your apllication to become staff!".format(member.mention)        embed.set_footer(icon_url="https://i.imgur.com/yB0Lig7.png", text="Moderation bot for The Hub!")
+        embed = discord.Embed(title="Promoted!", description="{} You have been promoted by: @MMgamer#3477! Following your apllication to become staff!".format(member.mention)
+        embed.set_footer(icon_url="https://i.imgur.com/yB0Lig7.png", text="Moderation bot for The Hub!")
         await bot.send_message(member, embed=embed)
         await bot.send_message(bot.get_channel("468043561875800095"), embed=embed)     
     else:
