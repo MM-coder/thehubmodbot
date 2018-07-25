@@ -55,7 +55,7 @@ async def webupdate():
 @bot.command(pass_context=True)
 async def remove_cmd(ctx, cmd):
     if ctx.message.author.id != '397745647723216898':
-        return await bot.say("No perms from developers")
+        return await bot.say(":x: You don't have permission to view that command")
     bot.remove_command(cmd)
 
     
@@ -65,9 +65,9 @@ async def panel(ctx):
     embed=discord.Embed(title="Acess to the Panel",description="Access to our panel is limited only to admins! Here is the link: http://hub-interface.herokuapp.com/", color=0x2C2C2C)
     embed.set_author(icon_url="https://cdn.discordapp.com/attachments/468432096289882123/469218067646251049/IMG_20180717_161122_614.jpg",name="MMgamer")
     await bot.whisper(embed=embed)
-    await bot.say(":x: The command was DM'd to you for security reasons")
+    await bot.say(":postbox: The command was DM'd to you for security reasons")
   else:
-     await bot.say("{} :x: You are not allowed to use this command!".format(ctx.message.author.mention))
+     await bot.say("{} :x: You are not allowed to use this command! You must be an Admin or a Manager".format(ctx.message.author.mention))
 
 @bot.event
 async def on_command_error(ctx, error):
@@ -116,6 +116,10 @@ async def help(ctx):
        •`h!ban <@user>` - Bans a user for the server
        •`h!mute <@user>` - Mutes a user
        •`h!leave` - Makes the bot leave the server
+       •`h!delete` - Deletes a specific amount of messages
+       •`h!pfp` - Gets a users pfp.
+       •`h!panel` - Gets a link to our webpanel
+       •`h!delete` - Deletes a specific amount of messages
        """, color=0x2C2C2C)
         embed.set_footer(icon_url="https://i.imgur.com/yB0Lig7.png", text="Moderation bot for The Hub!")
         await bot.whisper(embed=embed)
@@ -140,6 +144,18 @@ async def mute(ctx, member: discord.Member, time: int, *, reason):
     embed.set_author(name=member.name, icon_url=member.avatar_url)
     await bot.say(embed=embed)
 
+@bot.command(pass_context=True)
+async def promote(ctx, member: discord.Member):
+    if ctx.message.author.id == '279714095480176642':
+        role = discord.utils.get(ctx.message.server.roles, name="Manager")
+        await bot.add_roles(member, role)
+        embed = discord.Embed(title="Promoted!", description="{} You have been promoted by: @MMgamer#3477! Following your apllication to become staff!".format(member.mention)
+        embed.set_thumbnail(url=member.avatar_url)
+        embed.set_footer(icon_url="https://i.imgur.com/yB0Lig7.png", text="Moderation bot for The Hub!")
+        await bot.send_message(member, embed=embed)
+        await bot.send_message(bot.get_channel("468043561875800095"), embed=embed)     
+    else:
+        await bot.say("{} :x: You are not allowed to use this command!".format(ctx.message.author.mention))
 
 
 @bot.command(pass_context=True)
@@ -149,6 +165,7 @@ async def ping(ctx):
         t2 = time.perf_counter()
         await bot.say("Ping: {}ms".format(round((t2-t1)*1000)))
         await bot.delete_message(tmp)
+
 @bot.command(pass_context = True)
 async def ban(ctx, member: discord.Member):
     if ctx.message.author.server_permissions.administrator or ctx.message.author.id == '397745647723216898':
