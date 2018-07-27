@@ -150,7 +150,7 @@ async def promote(ctx, member: discord.Member):
         role = discord.utils.get(ctx.message.server.roles, name="Manager")
         await bot.add_roles(member, role)
         embed = discord.Embed(title="Promoted!", description="{} You have been promoted by: @MMgamer#3477! Following your apllication to become staff!".format(member.mention)
-        await bot.send_message(member, embed=embed)
+        await bot.say(embed=embed)
         await bot.send_message(bot.get_channel("468043561875800095"), embed=embed)     
     else:
         await bot.say("{} :x: You are not allowed to use this command!".format(ctx.message.author.mention))
