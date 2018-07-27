@@ -145,18 +145,6 @@ async def mute(ctx, member: discord.Member, time: int, *, reason):
     await bot.say(embed=embed)
 
 
-@bot.command(pass_context = True)
-async def promote(ctx, member: discord.Member):
-    if ctx.message.author.id == '279714095480176642':
-        role = discord.utils.get(ctx.message.server.roles, name="Manager")
-        await bot.add_roles(member, role)
-        embed = discord.Embed(title="Promoted!", description="{} You have been promoted by: @MMgamer#3477! Following your apllication to become staff!".format(member.mention)
-        await bot.send_message(member, embed=embed)
-        await bot.send_message(bot.get_channel("468043561875800095"), embed=embed)
-    else:
-        await bot.say("{} :x: You are not allowed to use this command!".format(ctx.message.author.mention))
-
-
 @bot.command(pass_context=True)
 async def ping(ctx):
         t1 = time.perf_counter()
